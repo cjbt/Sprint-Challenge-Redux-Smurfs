@@ -24,7 +24,9 @@
 import { ADD_SMURFS, GET_SMURFS, HANDLE_CHANGE } from '../actions';
 const initialState = {
   smurfs: [],
-  name: ''
+  name: '',
+  age: '',
+  height: ''
 };
 
 export default function(state = initialState, action) {
@@ -37,7 +39,10 @@ export default function(state = initialState, action) {
     case ADD_SMURFS:
       return {
         ...state,
-        smurfs: action.payload
+        smurfs: action.payload,
+        name: '',
+        age: '',
+        height: ''
       };
     case HANDLE_CHANGE:
       return {
