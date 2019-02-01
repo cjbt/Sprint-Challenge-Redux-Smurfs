@@ -25,13 +25,17 @@ import {
   ADD_SMURFS,
   GET_SMURFS,
   HANDLE_CHANGE,
-  DELETE_SMURF
+  DELETE_SMURF,
+  UPDATE_SMURF,
+  POPULATE_SMURFS
 } from '../actions';
 const initialState = {
   smurfs: [],
   name: '',
   age: '',
-  height: ''
+  height: '',
+  beingUpdated: null,
+  isUpdating: false
 };
 
 export default function(state = initialState, action) {
@@ -58,6 +62,26 @@ export default function(state = initialState, action) {
       return {
         ...state,
         smurfs: action.payload
+      };
+    case POPULATE_SMURFS:
+      let selected = state.smurfs.find(smurf => smurf.id === action.payload);
+      return {
+        ...state,
+        name: selected.name,
+        age: selected.age,
+        height: selected.height,
+        beingUpdated: selected.id,
+        isUpdating: true
+      };
+    case UPDATE_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload,
+        name: '',
+        age: '',
+        height: '',
+        beingUpdated: null,
+        isUpdating: false
       };
     default:
       return state;

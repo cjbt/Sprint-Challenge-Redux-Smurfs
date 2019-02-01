@@ -28,6 +28,11 @@ export const HANDLE_CHANGE = 'HANDLE_CHANGE';
 export const DELETE_SMURF = 'DELETE_SMURF';
 export const DELETE_SMURF_ERROR = 'DELETE_SMURF_ERROR';
 
+export const POPULATE_SMURFS = 'POPULATE_SMURFS';
+
+export const UPDATE_SMURF_ERROR = 'UPDATE_SMURF_ERROR';
+export const UPDATE_SMURF = 'UPDATE_SMURF';
+
 const url = 'http://localhost:3333/smurfs';
 
 export const getSmurfs = () => dispatch => {
@@ -93,6 +98,28 @@ export const deleteSmurf = id => dispatch => {
     .catch(err =>
       dispatch({
         type: DELETE_SMURF_ERROR,
+        payload: err
+      })
+    );
+};
+
+export const populateSmurfs = id => ({
+  type: POPULATE_SMURFS,
+  payload: id
+});
+
+export const updateSmurf = (id, name, age, height) => dispatch => {
+  return axios
+    .put(`${url}/${id}`, { name, age, height })
+    .then(res =>
+      dispatch({
+        type: UPDATE_SMURF,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: UPDATE_SMURF_ERROR,
         payload: err
       })
     );
