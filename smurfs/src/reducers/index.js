@@ -21,7 +21,12 @@
   There is no need for 'combineReducers' in this project.
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
-import { ADD_SMURFS, GET_SMURFS, HANDLE_CHANGE } from '../actions';
+import {
+  ADD_SMURFS,
+  GET_SMURFS,
+  HANDLE_CHANGE,
+  DELETE_SMURF
+} from '../actions';
 const initialState = {
   smurfs: [],
   name: '',
@@ -48,6 +53,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         [action.payload.name]: action.payload.value
+      };
+    case DELETE_SMURF:
+      return {
+        ...state,
+        smurfs: action.payload
       };
     default:
       return state;
