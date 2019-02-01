@@ -23,6 +23,8 @@ export const ADD_SMURFS_LOAD = 'ADD_SMURFS_LOAD';
 export const ADD_SMURFS = 'ADD_SMURFS';
 export const ADD_SMURFS_ERROR = 'ADD_SMURFS_ERROR';
 
+export const HANDLE_CHANGE = 'HANDLE_CHANGE';
+
 const url = 'http://localhost:3333/smurfs';
 
 export const getSmurfs = () => dispatch => {
@@ -67,3 +69,11 @@ export const addSmurf = (name, age, height) => dispatch => {
       })
     );
 };
+
+export const handleChange = (name, value) => ({
+  type: HANDLE_CHANGE,
+  payload: {
+    name,
+    value
+  }
+});
