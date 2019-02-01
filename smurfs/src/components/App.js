@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SmurfForm from './SmurfForm';
+import SmurfLists from './SmurfLists';
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions';
 /*
@@ -17,6 +18,7 @@ class App extends Component {
     return (
       <div className='App'>
         <SmurfForm />
+        <SmurfLists />
       </div>
     );
   }
